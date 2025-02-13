@@ -11,7 +11,7 @@ class Game:
         input_outfit = int(input("Choose your outfit (1 or 2):\n"))
         input_character_kind = input("Choose your character's kind ('Warrior', 'Sura', 'Ninja', 'Shaman'):\n")
         input_kingdom = input("Choose your kingdom ('Chunjo', 'Jinno', 'Shinsoo'):\n")
-        input_mode = input("Choose your mode (singleplayer, multiplayer):\n")
+        input_mode = input("Choose your mode ('singleplayer', 'multiplayer'):\n")
 
         try:
             self.chosen_character = CharacterMenu(input_name, mode=input_mode, outfit=input_outfit, character_kind=input_character_kind, kingdom=input_kingdom)
