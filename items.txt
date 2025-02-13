@@ -1,0 +1,30 @@
+Sword of Flames
+Mystic Bow
+Thunder Hammer
+Dagger of Shadows
+Staff of the Ancients
+Dragon Scale Armor
+Elven Leather Armor
+Knight's Plate Mail
+Mage's Robe
+Shadow Cloak
+Health Potion
+Mana Potion
+Elixir of Strength
+Potion of Agility
+Antidote
+Dragon Scale
+Enchanted Wood
+Mystic Gem
+Iron Ore
+Leather Hide
+Ring of Power
+Amulet of Wisdom
+Bracelet of Agility
+Pendant of Protection
+Belt of Strength
+Scroll of Teleportation
+Map Fragment
+Treasure Chest
+Ancient Relic
+Gold Coins
