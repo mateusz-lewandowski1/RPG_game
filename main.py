@@ -28,5 +28,5 @@ class Game:
         world.map_m1()
 
 if __name__ == '__main__':
-    game = Game()  # No arguments needed
+    game = Game()
     game.main()
