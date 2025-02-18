@@ -93,9 +93,3 @@ class Actions(Player):
     def pick_item(self, item):
         self.inventory.append(item)
         print(f"Picked up {item}!")
-
-
-
-
-
-# JAKIS RANDOMOWY PUSH
