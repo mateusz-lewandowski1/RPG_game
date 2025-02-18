@@ -1,25 +1,50 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from game import CharacterMenu
 
-username = 'your_username'
-password = 'your_password'
-host = 'localhost'  # or your database host
-port = '5432'       # default port for PostgreSQL
-database = 'your_database'
+Base = declarative_base()
 
-database_url = f'postgresql://{username}:{password}@{host}:{port}/{database}'
+class Character(Base):
+    __tablename__ = 'Character'
+    name = Column(String, primary_key=True)
+    outfit = Column(Integer)
+    character_kind = Column(String)
+    kingdom = Column(String)
+    mode = Column(String)
 
-engine = create_engine(database_url)
+class Database:
+    def __init__(self, db_url='sqlite:///main_db'):
+        self.engine = create_engine(db_url)
+        Base.metadata.create_all(self.engine)
+        self.Session = sessionmaker(bind=self.engine)
 
-Session = sessionmaker(bind=engine)
+    def get_session(self):
+        return self.Session()
 
-session = Session()
+class CharacterManager:
+    def __init__(self, db: Database):
+        self.session = db.get_session()
 
-# Example
-try:
-    result = session.execute("SELECT * FROM your_table")
-    for row in result:
-        print(row)
-finally:
-    # Close the session
-    session.close()
+    def add_character(self, character_menu: CharacterMenu):
+        new_character = Character(
+            name=character_menu.name,
+            outfit=character_menu.outfit,
+            character_kind=character_menu.character_kind,
+            kingdom=character_menu.kingdom,
+            mode=character_menu.mode
+        )
+
+        self.session.add(new_character)
+        self.session.commit()
+        print(f'Added character: {new_character.name}')
+
+    def display_characters(self):
+        characters = self.session.query(Character).all()
+        print("Characters in the database:")
+        for character in characters:
+            print(
+                f'Name: {character.name}, Outfit: {character.outfit}, Kind: {character.character_kind}, Kingdom: {character.kingdom}, Mode: {character.mode}')
+
+    def close(self):
+        self.session.close()
