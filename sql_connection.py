@@ -58,7 +58,7 @@ class CharacterManager:
                 character.inventory = self.item
 
             self.session.commit()
-            print(f'Added item: {item} to {character.name}\'s inventory.')
+            print(f'Added item: {self.item} to {character.name}\'s inventory.')
         else:
             print(f'Character not found in the database.')
 
