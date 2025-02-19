@@ -1,9 +1,10 @@
-from game import CharacterMenu, World, ValidationError
+from game import CharacterMenu, World, ValidationError, Player
 from sql_connection import CharacterManager, Database
 
 class Game:
     def __init__(self):
         self.chosen_character = None
+        self.player = None
 
     def main(self):
         input_name = input("Enter your character name:\n")
@@ -25,9 +26,13 @@ class Game:
         world.welcome_message()
 
         db = Database()
-        character_manager = CharacterManager(db)
+        self.player = Player(self.chosen_character)
+        character_manager = CharacterManager(db, self.chosen_character, self.player)
 
         character_manager.add_character(self.chosen_character)
+
+        character_manager.add_item("Mystic Bow")
+        character_manager.add_item("Mana Potion")
 
         character_manager.display_characters()
 
