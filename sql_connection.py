@@ -71,12 +71,11 @@ class CharacterManager:
                 f'Name: {character.name}, Outfit: {character.outfit}, Kind: {character.character_kind}, Kingdom: {character.kingdom}, Mode: {character.mode}')
 
     def delete_character(self, character_menu: CharacterMenu):
-        # Query the character by name
         character_to_delete = self.session.query(Character).filter_by(name=character_menu.name).first()
 
         if character_to_delete:
-            self.session.delete(character_to_delete)  # Delete the character
-            self.session.commit()  # Commit the changes
+            self.session.delete(character_to_delete)
+            self.session.commit()
             print(f'Deleted character: {character_menu.name}')
         else:
             print(f'Character "{character_menu.name}" not found in the database.')
