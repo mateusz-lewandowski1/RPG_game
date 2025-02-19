@@ -72,6 +72,7 @@ class Player:
         self.mana = 100
         self.skills = None
         self.inventory = []
+        self.item = None
         self.position = (0, 0)
 
 class Actions(Player):
@@ -90,6 +91,6 @@ class Actions(Player):
         else:
             print('Invalid direction. Please choose the correct direction.')
 
-    def pick_item(self, item):
-        self.inventory.append(item)
-        print(f"Picked up {item}!")
+    def pick_item(self):
+        self.inventory.append(self.item)
+        print(f"Picked up {self.item}!")
