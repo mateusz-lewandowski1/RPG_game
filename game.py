@@ -4,7 +4,7 @@ import time
 
 class CharacterSpecs(BaseModel):
     character_kind: Literal['Warrior', 'Sura', 'Ninja', 'Shaman']
-    outfit: conint(ge=1, le=2)  # This will enforce the outfit constraints
+    outfit: conint(ge=1, le=2)
     name: str
     kingdom: Literal['Chunjo', 'Jinno', 'Shinsoo']
     mode: Literal['singleplayer', 'multiplayer']
@@ -19,7 +19,7 @@ class CharacterMenu(CharacterSpecs):
             'mode': mode
         }
         super().__init__(**params)  # This will validate outfit and other fields
-        # Store specs as a private instance variable
+
         self._specs = params  # Use a private variable to avoid Pydantic validation issues
 
     @property
@@ -50,12 +50,11 @@ class World:
             print('Loading error. Please choose the correct kingdom available.')
 
     def map_m1(self):
-        self.items = []  # Initialize the items list
+        self.items = []
         try:
             with open('items.txt', 'r') as file:
                 self.items = [line.strip() for line in file.readlines()]
 
-            # Print the list of items
             print("Items in the map:")
             for item in self.items:
                 print(f"- {item}")
